@@ -1,0 +1,23 @@
+
+
+input {
+  width: 100%;
+}
+
+.title {
+  font-weight: 900;
+  font-size: 45px;
+  margin: 30px 10px;
+}
+
+.item-container {
+  text-align: left;
+}
+
+.item-row {
+  margin: 10px 5px;
+}
+
+.my-btn{
+  min-width: 80px;
+}
