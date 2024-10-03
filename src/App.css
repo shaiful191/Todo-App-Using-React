@@ -1,5 +1,3 @@
-
-
 input {
   width: 100%;
 }
@@ -10,9 +8,6 @@ input {
   margin: 30px 10px;
 }
 
-.item-container {
-  text-align: left;
-}
 
 .item-row {
   margin: 10px 5px;
