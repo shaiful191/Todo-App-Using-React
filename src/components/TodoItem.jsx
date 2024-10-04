@@ -1,6 +1,6 @@
 import React from 'react'
 
-const TodoItem = ({todoName,todoDate}) => {
+const TodoItem = ({todoName,todoDate,onDeleteClick}) => {
   return (
     <div className="container  ">
       <div className="row item-row">
@@ -11,7 +11,10 @@ const TodoItem = ({todoName,todoDate}) => {
           {todoDate}
         </div>
         <div className="col-2">
-          <button type="button" className="btn btn-danger my-btn">Danger</button>
+          <button type="button" className="btn btn-danger my-btn"
+          onClick={()=> onDeleteClick(todoName)}
+
+          >Delete</button>
         </div>
       </div>
     </div>
