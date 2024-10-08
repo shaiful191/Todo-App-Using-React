@@ -1,7 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { AiFillDelete } from "react-icons/ai";
+import TodoItemsContext from '../store/todo-items-store';
 
-const TodoItem = ({ todoName, todoDate, onDeleteClick }) => {
+const TodoItem = ({ todoName, todoDate }) => {
+  
+  const { deleteItem } = useContext(TodoItemsContext);
+
   return (
     <div className="container  ">
       <div className="row item-row">
@@ -13,7 +17,7 @@ const TodoItem = ({ todoName, todoDate, onDeleteClick }) => {
         </div>
         <div className="col-2">
           <button type="button" className="btn btn-danger my-btn"
-            onClick={() => onDeleteClick(todoName)}>
+            onClick={() => deleteItem(todoName)}>
             <AiFillDelete />
           </button>
         </div>

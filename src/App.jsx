@@ -4,6 +4,7 @@ import TodoItems from './components/TodoItems'
 import './App.css'
 import { useState } from 'react';
 import WelcomeMessage from './components/WelcomeMessage';
+import TodoItemsContext from './store/todo-items-store';
 
 function App() {
 
@@ -25,26 +26,33 @@ function App() {
 
   const [todoItems, setTodoItems] = useState(initialTodoItems);
 
-  const handelNewItem = (itemName, itemDueDate) => {
+  const addNewItem = (itemName, itemDueDate) => {
     setTodoItems((currValue) => {
       const newTodoItems = [...currValue, { name: itemName, dueDate: itemDueDate }];
       return newTodoItems;
     });
   }
 
-  const handelDeleteItem = (itemName) => {
+  const deleteItem = (itemName) => {
     const newTodoItems = todoItems.filter(item => item.name !== itemName);
     setTodoItems(newTodoItems);
   }
 
   return (
-    <div className='todo-container'>
-      <AppName />
-      <AddTodo onNewItem={handelNewItem} />
-      {/* conditional rendering: trynary operator or logical operator inside tag but before return we can use  if else */}
-      {todoItems.length === 0 && <WelcomeMessage />}
-      <TodoItems todoItems={todoItems} onDeleteClick={handelDeleteItem} />
-    </div>
+
+    <TodoItemsContext.Provider value={{
+      todoItems,
+      addNewItem,
+      deleteItem
+    }}>
+      <div className='todo-container'>
+        <AppName />
+        <AddTodo />
+        <WelcomeMessage />
+        <TodoItems />
+      </div>
+    </TodoItemsContext.Provider>
+
   )
 }
 
