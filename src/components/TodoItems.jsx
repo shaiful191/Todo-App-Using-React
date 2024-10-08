@@ -5,6 +5,7 @@ import styles from './TodoItems.module.css'
 const TodoItems = ({ todoItems, onDeleteClick }) => {
   return (
     <div className={styles.itemContainer}>
+      
       {todoItems.map((item, index) => (
         <TodoItem
           key={index}

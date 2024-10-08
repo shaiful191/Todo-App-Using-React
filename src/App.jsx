@@ -24,29 +24,26 @@ function App() {
   ];
 
   const [todoItems, setTodoItems] = useState(initialTodoItems);
-  // const [todoItems, setTodoItems] = useState([]);
-
 
   const handelNewItem = (itemName, itemDueDate) => {
-    console.log(`New Item Added: ${itemName} Dates:${itemDueDate}`);
-    const newTodoItems =  [...todoItems, { name: itemName, dueDate: itemDueDate }];
-    setTodoItems(newTodoItems);
+    setTodoItems((currValue) => {
+      const newTodoItems = [...currValue, { name: itemName, dueDate: itemDueDate }];
+      return newTodoItems;
+    });
   }
 
   const handelDeleteItem = (itemName) => {
-    const newTodoItems =  todoItems.filter(item => item.name !== itemName);
+    const newTodoItems = todoItems.filter(item => item.name !== itemName);
     setTodoItems(newTodoItems);
-    // console.log(`Item Deleted: ${itemName}`);
-
   }
 
   return (
     <div className='todo-container'>
       <AppName />
-      <AddTodo onNewItem={handelNewItem}/>
-      {/* conditional rendering:  */}
-      {todoItems.length === 0 &&  <WelcomeMessage/>} 
-      <TodoItems todoItems={todoItems} onDeleteClick={handelDeleteItem}/>
+      <AddTodo onNewItem={handelNewItem} />
+      {/* conditional rendering: trynary operator or logical operator inside tag but before return we can use  if else */}
+      {todoItems.length === 0 && <WelcomeMessage />}
+      <TodoItems todoItems={todoItems} onDeleteClick={handelDeleteItem} />
     </div>
   )
 }

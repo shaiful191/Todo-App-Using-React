@@ -1,55 +1,50 @@
-import React, { useState } from 'react'
-
+import React, { useRef } from 'react'
+import { MdNoteAdd } from "react-icons/md";
 const AddTodo = ({ onNewItem }) => {
-  const [todoName, setTodoName] = useState("");
-  const [todoDate, setTodoDate] = useState("");
-  const [error, setError] = useState("");
 
-  const handleNameChange = (event) => {
-    setTodoName(event.target.value);
-    setError("");  
-  }
+  const todoNameElement = useRef();
+  const todoDateElement = useRef();
 
-  const handleDateChange = (event) => {
-    setTodoDate(event.target.value);
-    setError("");  
-  }
 
-  const handleAddButtonClicked = () => {
-    if (todoName === "" || todoDate === "") {
-      setError("Both fields are required!!!");
-      return;
-    }
-    
+  const handleAddButtonClicked = (event) => {
+    event.preventDefault();
+
+    const todoName = todoNameElement.current.value;
+    const todoDate = todoDateElement.current.value;
+
+    todoNameElement.current.value = '';
+    todoDateElement.current.value = '';
+
     onNewItem(todoName, todoDate);
-    setTodoName("");
-    setTodoDate("");
   }
 
   return (
     <div className="container text-center">
-      <div className="row item-row">
+      <form className="row item-row" onSubmit={handleAddButtonClicked}>
+
         <div className="col-6">
-          <input type="text" placeholder='Enter Todo Here' className="form-control"
-            value={todoName}
-            onChange={handleNameChange}
+          <input
+            type="text"
+            ref={todoNameElement}
+            placeholder='Enter Todo Here'
           />
         </div>
+
         <div className="col-4">
-          <input type="date" className="form-control"
-            value={todoDate}
-            onChange={handleDateChange}
+          <input
+            type="date"
+            ref={todoDateElement}
           />
         </div>
+
         <div className="col-2">
-          <button type="button" className="btn btn-success my-btn"
-            onClick={handleAddButtonClicked}
-          >
-            Add
+          <button type="submit" className="btn btn-success my-btn">
+          <MdNoteAdd />
           </button>
         </div>
-      </div>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+
+      </form>
+
     </div>
   )
 }
