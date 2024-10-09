@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import TodoItem from './TodoItem'
 import styles from './TodoItems.module.css'
-import TodoItemsContext from '../store/todo-items-store';
+import {TodoItemsContext} from '../store/todo-items-store';
 
 const TodoItems = () => {
 

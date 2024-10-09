@@ -1,6 +1,6 @@
 import React, { useContext, useRef } from 'react'
 import { MdNoteAdd } from "react-icons/md";
-import TodoItemsContext from '../store/todo-items-store';
+import {TodoItemsContext} from '../store/todo-items-store';
 const AddTodo = () => {
 
   const { addNewItem } = useContext(TodoItemsContext);
